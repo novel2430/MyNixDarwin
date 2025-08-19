@@ -1,4 +1,4 @@
 -- Vscode Colorscheme
--- vim.cmd.colorscheme "vscode"
+vim.cmd.colorscheme "vscode"
 -- Catppuccin Colorscheme
-vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "catppuccin"

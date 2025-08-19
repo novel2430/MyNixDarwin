@@ -5,6 +5,7 @@
     toLua = str: "lua << EOF\n${str}\nEOF\n";
     toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
     # buildJdtConfig = import ./lsp-jdtls.nix;
+    buildVueConfig = import ./lsp-vue.nix {inherit pkgs;};
   in
   {
     enable = true;
@@ -19,7 +20,7 @@
       nil # Nix
       nodePackages.bash-language-server # Bash
       rust-analyzer # Rust
-      vue-language-server # Vue
+      vue-language-server vtsls # Vue
       kotlin-language-server # Kotlin
     ];
     extraLuaConfig = ''
@@ -54,6 +55,9 @@
       {
         plugin = nvim-lspconfig;
         config = (toLuaFile ./plugins/lsp.lua)
+        + (
+          toLua buildVueConfig
+        )
 #          + (
 #            toLua (
 #              buildJdtConfig {
@@ -102,6 +106,11 @@
       }
       # markdown-preview
       markdown-preview-nvim
+      # Vscode colorscheme
+      {
+        plugin = pkgs.callPackage ./nvim-vscode-colorscheme { };
+        config = toLuaFile ./plugins/vscode-nvim.lua;
+      }
       # Catppuccin colorscheme
       {
         plugin = catppuccin-nvim;

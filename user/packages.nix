@@ -3,6 +3,8 @@
   home.packages = with pkgs; [
     fastfetch
     tmux
-    jdk
+    yt-dlp
+    nodejs_24
+    ffmpeg
   ];
 }
