@@ -142,3 +142,4 @@ for server_name, server_config in pairs(lsp_servers) do
     settings = server_config
   }
 end
+

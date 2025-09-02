@@ -6,6 +6,7 @@
     toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
     # buildJdtConfig = import ./lsp-jdtls.nix;
     buildVueConfig = import ./lsp-vue.nix {inherit pkgs;};
+    buildCSharpConfig = import ./lsp-omnisharp.nix {inherit pkgs;};
   in
   {
     enable = true;
@@ -22,6 +23,7 @@
       rust-analyzer # Rust
       vue-language-server vtsls # Vue
       kotlin-language-server # Kotlin
+      omnisharp-roslyn # C Sharp
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./options/basic-autocommand.lua}
@@ -58,6 +60,9 @@
         + (
           toLua buildVueConfig
         )
+        + (
+          toLua buildCSharpConfig
+        )
 #          + (
 #            toLua (
 #              buildJdtConfig {
@@ -91,6 +96,7 @@
           p.tree-sitter-cpp
           p.tree-sitter-cmake
           p.tree-sitter-c
+          p.tree-sitter-c-sharp
         ]));
         config = toLuaFile ./plugins/treesitter.lua;
       }

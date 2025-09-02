@@ -16,6 +16,8 @@
       v = "nvim";
       cat = "${pkgs.bat}/bin/bat -p";
       tree = "${pkgs.tree}/bin/tree -C -A";
+      grep = "${pkgs.ripgrep}/bin/rg --encoding=UTF-8 -i";
+      darwin-rebuild = "sudo http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 darwin-rebuild";
     };
     initContent = ''
       setopt hist_verify
@@ -63,6 +65,8 @@
     '';
     profileExtra = ''
       export EDITOR="nvim"
+      export http_proxy="http://127.0.0.1:7890"
+      export https_proxy="http://127.0.0.1:7890"
     '';
   };
 }
