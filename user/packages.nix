@@ -6,5 +6,7 @@
     yt-dlp
     nodejs_24
     ffmpeg
+    cmatrix
+    yazi
   ];
 }
