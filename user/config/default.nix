@@ -7,5 +7,6 @@
     ./neovim
     ./tmux
     ./fastfetch
+    ./yazi
   ];
 }

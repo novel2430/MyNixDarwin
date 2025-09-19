@@ -7,6 +7,6 @@
     nodejs_24
     ffmpeg
     cmatrix
-    yazi
+    mpv
   ];
 }
