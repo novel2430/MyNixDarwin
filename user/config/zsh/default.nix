@@ -18,6 +18,7 @@
       tree = "${pkgs.tree}/bin/tree -C -A";
       grep = "${pkgs.ripgrep}/bin/rg --encoding=UTF-8 -i";
       darwin-rebuild = "sudo http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 darwin-rebuild";
+      yz = "${pkgs.yazi}/bin/yazi";
     };
     initContent = ''
       setopt hist_verify
