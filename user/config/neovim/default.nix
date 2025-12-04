@@ -97,6 +97,7 @@
           p.tree-sitter-cmake
           p.tree-sitter-c
           p.tree-sitter-c-sharp
+          p.tree-sitter-swift
         ]));
         config = toLuaFile ./plugins/treesitter.lua;
       }

@@ -80,11 +80,15 @@ local vue_ls_config = {
 }
 
 -- nvim below 0.11
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
 -- If using vtsls
-lspconfig.vtsls.setup(vtsls_config)
+-- lspconfig.vtsls.setup(vtsls_config)
+vim.lsp.config('vtsls', vtsls_config)
+vim.lsp.enable('vtsls')
 -- If using ts_ls
 -- lspconfig.ts_ls.setup ts_ls_config
-lspconfig.volar.setup(vue_ls_config)
+-- lspconfig.volar.setup(vue_ls_config)
+vim.lsp.config('vue_ls', vue_ls_config)
+vim.lsp.enable('vue_ls')
 -- lspconfig.vue_ls.setup({})
 ''

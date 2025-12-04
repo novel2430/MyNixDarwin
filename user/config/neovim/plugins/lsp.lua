@@ -137,9 +137,14 @@ local lsp_servers = {
 
 -- Start lspconfig
 for server_name, server_config in pairs(lsp_servers) do
-  require('lspconfig')[server_name].setup {
+  -- require('lspconfig')[server_name].setup {
+  --   capabilities = capabilities,
+  --   settings = server_config
+  -- }
+  vim.lsp.config(server_name, {
     capabilities = capabilities,
     settings = server_config
-  }
+  })
+  vim.lsp.enable(server_name)
 end
 

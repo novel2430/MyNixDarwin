@@ -1,6 +1,6 @@
 {pkgs, ...}:
 ''
-require('lspconfig')['omnisharp'].setup {
+vim.lsp.config('omnisharp', {
   cmd = {
     -- vim.fn.executable('OmniSharp') == 1 and 'OmniSharp' or 'omnisharp',
     '${pkgs.omnisharp-roslyn}/bin/OmniSharp',
@@ -12,5 +12,6 @@ require('lspconfig')['omnisharp'].setup {
     'utf-8',
     '--languageserver',
   }
-}
+})
+vim.lsp.enable('omnisharp')
 ''
