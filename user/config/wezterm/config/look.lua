@@ -20,7 +20,6 @@ local color = {
   bright_8 = '#e7ecf4',
 };
 M.enable_scroll_bar = false
-M.need_tab_bar = false
 M.window_padding = {
   left = 0,
   right = 0,

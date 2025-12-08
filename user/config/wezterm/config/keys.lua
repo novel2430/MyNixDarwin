@@ -1,6 +1,6 @@
 local M = {}
--- local wezterm = require 'wezterm'
--- local act = wezterm.action
+local wezterm = require 'wezterm'
+local act = wezterm.action
 -- local copy_action = act.Multiple {
 --   { CopyTo = 'ClipboardAndPrimarySelection' },
 --   { CopyMode = 'ClearSelectionMode' },
@@ -88,15 +88,48 @@ local M = {}
 --   )
 -- end
 --
--- M.keybind = {
---   -- Moving
---   { key = 'PageUp',   mods = 'CTRL|SHIFT', action = act.ScrollByPage(-1) },
---   { key = 'PageDown', mods = 'CTRL|SHIFT', action = act.ScrollByPage(1) },
---   { key = 'k',        mods = 'CTRL|SHIFT', action = act.ScrollByLine(-1) },
---   { key = 'j',        mods = 'CTRL|SHIFT', action = act.ScrollByLine(1) },
---   -- CopyMode
---   { key = 'x',        mods = 'CTRL|SHIFT', action = wezterm.action.ActivateCopyMode },
--- }
+M.keybind = {
+  -- Moving
+  { key = 'PageUp',   mods = 'CTRL', action = act.ScrollByPage(-1) },
+  { key = 'PageDown', mods = 'CTRL', action = act.ScrollByPage(1) },
+  -- { key = 'k',        mods = 'CTRL', action = act.ScrollByLine(-1) },
+  -- { key = 'j',        mods = 'CTRL', action = act.ScrollByLine(1) },
+  -- Tab Stuff
+  { key = 'j', mods = 'CTRL|SHIFT',       action = act.ActivateTabRelative(1) },
+  { key = 'k', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(-1) },
+  { key = 'd', mods = 'CTRL|SHIFT', action = act.CloseCurrentTab { confirm = false } },
+  {
+    key = 'e',
+    mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine {
+      description = 'Enter new name for tab',
+      initial_value = '',
+      action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
+  },
+  -- CopyMode
+  -- { key = 'x',        mods = 'CTRL|SHIFT', action = wezterm.action.ActivateCopyMode },
+}
+for i = 1, 9 do
+  table.insert(M.keybind, {
+    key = tostring(i),
+    mods = 'ALT',
+    action = act.ActivateTab(i - 1),
+  })
+end
+
+table.insert(M.keybind, {
+  key = '0',
+  mods = 'ALT',
+  action = act.ActivateTab(9),
+})
 --
 -- M.keytable = {
 --   copy_mode = copy_mode,

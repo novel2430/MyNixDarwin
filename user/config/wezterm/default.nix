@@ -7,4 +7,7 @@
     recursive = true;
     source = ./config;
   };
+  home.packages = with pkgs; [
+    wezterm
+  ];
 }
